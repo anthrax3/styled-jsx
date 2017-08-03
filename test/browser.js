@@ -1,10 +1,12 @@
 import test from 'ava'
+import Window from 'window'
 import React from 'react'
 import ReactDOM from 'react-dom'
 // eslint-disable-next-line no-unused-vars
 import JSXStyle from '../src/style'
 
 test('Renders styles and updates them', t => {
+  const { document } = new Window()
   const mountPoint = document.createElement('div')
   document.body.appendChild(mountPoint)
 
@@ -46,8 +48,6 @@ test('Renders styles and updates them', t => {
         this.getExpectedStyles(),
         'styles not updated correctly'
       )
-      // @TODO(giuseppeg) very hackish way to do clean up, find a better way to do so.
-      document.documentElement.innerHTML = ''
     }
     render() {
       const { styleId, css } = this.state
